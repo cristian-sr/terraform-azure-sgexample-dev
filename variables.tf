@@ -6,3 +6,9 @@ variable "tfe_org" {
 variable "rg_workspace" {
   description = "Name of TFE workspace managing deployment of resource group to use."
 }
+
+
+variable "resource_group_name" {
+  description = "Name of the resource group from the above workspace that you want to use."
+  default = "dev-rg"
+}

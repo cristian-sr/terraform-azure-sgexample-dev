@@ -1,4 +1,4 @@
-# terraform-azure-sgexample
+# terraform-azure-sgexample-dev
 
 Simple example showing a deployment of Azure Security Groups, with variables and outputs.
 

@@ -13,31 +13,9 @@ data "terraform_remote_state" "resource_groups" {
 resource "azurerm_network_security_group" "dev-sg" {
   name                = "DevSecurityGroup"
   location            = "${data.terraform_remote_state.resource_groups.location}"
-  resource_group_name = "dev-rg"
+  resource_group_name = "${var.resource_group_name}"
 
-  security_rule {
-    name                       = "AllowAll"
-    priority                   = 100
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
-  }
-
-  tags {
-    environment = "dev"
-  }
-}
-
-resource "azurerm_network_security_group" "qa-sg" {
-  name                = "QASecurityGroup"
-  location            = "${data.terraform_remote_state.resource_groups.location}"
-  resource_group_name = "qa-rg"
-
-  security_rule {
+    security_rule {
     name                       = "MySQL"
     priority                   = 100
     direction                  = "Inbound"
@@ -62,6 +40,6 @@ resource "azurerm_network_security_group" "qa-sg" {
   }
 
   tags {
-    environment = "qa"
+    environment = "dev"
   }
 }
